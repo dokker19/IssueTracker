@@ -4,6 +4,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const exphbs = require('express-handlebars')
+
 const Issues = require('./models/Issues')
 
 const app = express()
@@ -26,6 +27,13 @@ app.use((req, res, next) => {
     next()
 })
 
+
+app.get('/registerUser', (req, res) => {
+    res.render('registerUser', {
+        style: 'custom.css',
+        Issues
+    })
+})
 //Homepage rendering
 app.get('/', (req, res) => {
     res.render('login', {
