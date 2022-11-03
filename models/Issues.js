@@ -2,11 +2,11 @@
 let DummyIssues = [
     {
         id: 1,
-        issueName: "bug 1",
+        todo: "bug 1",
     },
     {
         id: 2,
-        issueName: "bug 2",
+        todo: "bug 2",
     },
 ]
 
