@@ -1,9 +1,8 @@
-const express = require('express');
-const router = express.Router();
+//routes/project.js
 
-// Home
-router.get('/', function(req, res){
-  res.redirect('/users');
-});
+const { json } = require('body-parser')
+const express = require('express')
+const router = express.Router()
 
-module.exports = router;
+const Issues = require('../../models/Issues')
+
