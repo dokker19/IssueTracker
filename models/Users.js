@@ -1,32 +1,29 @@
-// models/Issues.js
-// Model for Issues table
+// models/Users.js
+// Model for User table
 
 const Sequelize = require('sequelize')
 const db = require('../config/database')
 
-const Issues = db.define('issues', {
+const Users = db.define('users', {
     id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.INTEGER
     },
-    ticketname: {
+    username: {
         allowNull: false,
+        unique: true,
         type: Sequelize.STRING,
         valiate: {
-            //require ticketname to at least length 3, only use letters, numbers, underscores
-            is: /^\w{2,}$/
+            //require username to at least length 3, only use letters, numbers, underscores
+            is: /^\w{3,}$/
         }
     },
-    description: {
+    password: {
         type: Sequelize.STRING,
     },
-    //TODO: urgency type Sequelize Int? String?
-    urgency: {
+    contact_email: {
         type: Sequelize.STRING,
-    },
-    issueDate:{
-        type: Sequelize.DATE,
     }
 })
 

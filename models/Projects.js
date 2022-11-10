@@ -1,33 +1,31 @@
-// models/Issues.js
-// Model for Issues table
+// models/Projects.js
+// Model for Projects table
 
 const Sequelize = require('sequelize')
 const db = require('../config/database')
 
-const Issues = db.define('issues', {
+const Projects = db.define('projects', {
     id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.INTEGER
     },
-    ticketname: {
+    projectTitle: {
         allowNull: false,
         type: Sequelize.STRING,
         valiate: {
-            //require ticketname to at least length 3, only use letters, numbers, underscores
-            is: /^\w{2,}$/
+            //require projectTitle to at least length 3, only use letters, numbers, underscores
+            is: /^\w{3,}$/
         }
     },
     description: {
         type: Sequelize.STRING,
+        allowNull: true,
     },
-    //TODO: urgency type Sequelize Int? String?
-    urgency: {
-        type: Sequelize.STRING,
-    },
-    issueDate:{
+    startDate:{
         type: Sequelize.DATE,
+        allowNull: false,
     }
 })
 
-module.exports = Users
+module.exports = Projects
