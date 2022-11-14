@@ -1,0 +1,12 @@
+<section id="issues" class="container">
+    <h1>All Issues</h1>
+
+    {{#each issues}}
+        <div>
+        <h3>{{dataValues.ticketname}}</h3>
+        <p>{{dataValues.description}}</p>
+        </div>
+    {{else}}
+        <p>No Issues to be displayed!</p>
+    {{/each}}
+</section>

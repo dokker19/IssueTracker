@@ -1,27 +1,93 @@
-// api/users.js
+// routes/issues.js
 
 const express = require('express')
 const router = express.Router()
-const USERS = require('../models/user')
+const sequelize = require('../index2')
+
+const { Issues } = sequelize.models
+//console.log(sequelize.models.Issues)
 
 // Index
 router.get('/', (req, res, next) => {
-    const query = {}
-    if (req.query.username) query.username = {$regex:req.query.username, $options:'i'}
-    USERS.find(query)
-    .sort({id:1})
-    .exec((err, users) => {
-        if (err) {
-            res.json(err)
-            //res.status(500)
-            //res.json({success:false, message: err})
-        } else {
-            res.render('users/index', {users:users})
-            //res.json({success: true, data: users})
-        }
-    })
+    Issues.findAll()
+        .then(issues =>{
+            console.log(issues)
+            res.render('showIssues', {
+                issues
+            })
+        }).catch(err=>{console.log(err)})
 })
 
+router.get('/showAll', (req, res, next) => {
+    const query = {}
+    if (req.query.username) query.username = {$regex:req.query.username, $options:'i'}
+
+    Issues.findAll(query)
+        .then((result) => {
+            res.json(result)
+        })
+        .catch((err) => {
+            res.json(err)
+        })
+})
+
+//New
+router.get('/new', (req, res, next) => {
+    res.render('newIssue')
+})
+
+//Create
+router.post('/', (req, res, next) => {
+    console.log(req.body)
+    Issues.findOne({
+        order: [ ['id', 'DESC' ]],
+    })
+        .then((issue) => {
+            res.locals.lastID = issue?issue.id:0
+            console.log('req.body: \n\n')
+            console.log(req.body)
+            const newIssue = new Issues(req.body)
+
+            
+            newIssue.id = res.locals.lastID + 1
+            newIssue.save((err, issue) => {
+                if (err) {
+                    res.json(err)
+                } else {
+                    res.redirect('/issues')
+                }
+            })
+
+        }).catch((err) => {
+            res.json(err)
+        })
+})
+//     .sort({id: -1})
+//     .exec((err, user) => {
+//         if (err) {
+//             return res.json(err)
+//             //res.status(500)
+//             //return res.json({success:false, message: err})
+//         } else {
+//             res.locals.lastID = user?user.id:0
+//             next()
+//         }
+//     })
+// }, (req, res, next) => {
+//     const newIssue = new Issues(req.body)
+//     newIssue.id = res.locals.lastID + 1
+//     newIssue.save((err, issue) => {
+//         if (err) {
+//             res.json(err)
+//             //res.status(500)
+//             //res.json({success:false, message: err})
+//         } else {
+//             res.redirect('/issues')
+//         }
+//     })
+// })
+
+/** 
 // New
 router.get('/new', (req, res) => {
     res.render('users/new')
@@ -118,4 +184,7 @@ router.delete('/:id', (req, res, next) => {
     })
 })
 
+module.exports = router
+
+*/
 module.exports = router

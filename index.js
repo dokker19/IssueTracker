@@ -1,52 +1,19 @@
 // index.js
 
-const express = require('express')
-const bodyParser = require('body-parser')
-const methodOverride = require('method-override')
-const exphbs = require('express-handlebars')
+const app = require('./express/app')
+const sequelize = require('./sequelize')
+const port = process.env.PORT || 3000;
 
-const Issues = require('./models/Issues')
+//Test DB connection with async IIFE
+(async () => {
+    try{
+        await sequelize.authenticate()
+        console.log('Connection to db successfully established')
+    } catch (err) {
+        console.error('Unable to connect to the db: ', err)
+    }
+})()
 
-const app = express()
-
-//Handlebar Middleware for template engine
-//below line sets the app's engine (templating engine) to express-handlebars
-app.engine('handlebars', exphbs.engine({defaultLayout: 'main'}))
-app.set('view engine', 'handlebars') 
-
-//other settings
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
-app.use(methodOverride('_method'))
-app.use(express.static(__dirname + '/public'))
-app.use((req, res, next) => {
-    //CORS
-    res.header('Access-Control-Allow-Origin', '*')
-    res.header('Access-Control-Allow-Methods', 'GET POST PUT DELETE')
-    res.header('Access-Control-Allow-Headers', 'content-type')
-    next()
-})
-
-
-app.get('/registerUser', (req, res) => {
-    res.render('registerUser', {
-        style: 'custom.css',
-        Issues
-    })
-})
-//Homepage rendering
-app.get('/', (req, res) => {
-    res.render('login', {
-        style: 'custom.css',
-        Issues
-    })
-})
-
-
-
-
-//Port setting
-const port = process.env.PORT || 3000
 app.listen(port, () => {
     console.log('server on! http://localhost:' + port)
 })
