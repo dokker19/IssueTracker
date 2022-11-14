@@ -1,0 +1,40 @@
+<section id="add" class="container issue">
+    <div class="form-wrap">
+      <h1>Add Issue</h1>
+      <p>Add issue</p>
+      {{#each errors}}
+        <div class="error">
+          <p>{{text}}</p>
+        </div>
+      {{/each}}
+      <form action="/issues" method="POST">
+        <div class="input-group"> 
+          <label for="title">Issue Title</label>
+          <input type="text" name="ticketname" id="title" class="input-box" placeholder="eg. Issue #1"
+            maxlength="100" value={{ticketname}}>
+        </div>
+        <div class="input-group">
+          <label for="priority">Select priority 1-low 5-high: </label>
+          <select name = "priority" id = "priority">
+            <option  value="1"> 1 </option>
+            <option  value="2"> 2 </option>
+            <option  value="3"> 3 </option>
+            <option  value="4"> 4 </option>
+            <option  value="5"> 5 </option>
+          </select>
+        </div>
+        <div class="input-grou"> 
+          <label for="issueDate">Select Date Assigned</label>
+          <input type="date" name="title" id="title" class="input-box" placeholder="eg. Issue #1"
+            maxlength="100" value={{title}}>
+        </div>
+        <div class="input-group">
+          <label for="description">Issue Description</label>
+          <textarea name="description" id="description" class="input-box" placeholder="Describe the details of the gig"
+            rows="10" value={{description}}></textarea>
+        </div>
+        <input type="submit" value="Add Gig" class="btn btn-reverse">
+      </form>
+      
+    </div>
+  </section>
