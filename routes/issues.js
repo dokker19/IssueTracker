@@ -33,7 +33,9 @@ router.get('/showAll', (req, res, next) => {
 
 //New
 router.get('/new', (req, res, next) => {
-    res.render('newIssue')
+    res.render('newIssue', { 
+        style: 'custom.css', 
+    })
 })
 
 //Create
