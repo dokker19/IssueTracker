@@ -29,12 +29,14 @@ app.use((req, res, next) => {
 app.get('/registerUser', (req, res) => {
     res.render('registerUser', {
         style: 'custom.css',
+        layout: 'basic',
     })
 })
 //Login Page Rendering
 app.get('/login', (req, res) => {
     res.render('login', {
         style: 'custom.css',
+        layout: 'basic',
     })
 })
 
