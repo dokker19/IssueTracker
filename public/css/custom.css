@@ -47,6 +47,13 @@
     font-size: 18px;
 }
 
+.card{
+	border: none;
+	border-top: 5px solid  rgb(176,106,252);
+	background: #212042;
+	color: #57557A;
+}
+
 .nav-link:hover{
     background:#A37CF0;
     text-emphasis-color: white;
@@ -137,4 +144,9 @@
     height: 48px;
 }
 
+.btn-primary{
+    background: linear-gradient(135deg, rgba(176,106,252,1) 39%,rgba(116,17,255,1) 101%);
+    border: none;
+    border-radius: 50px;
+}
 
