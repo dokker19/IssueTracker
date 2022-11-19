@@ -1,0 +1,12 @@
+<section id="issues" class="container">
+    <h1>All Users</h1>
+
+    {{#each users}}
+        <div>
+        <h3>{{dataValues.username}}</h3>
+        <p>{{dataValues.contact_email}}</p>
+        </div>
+    {{else}}
+        <p>No Issues to be displayed!</p>
+    {{/each}}
+</section>

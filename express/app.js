@@ -6,6 +6,11 @@ const exphbs = require('express-handlebars')
 const path = require('path')
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 
+const bcrypt = require('bcrypt')
+const passport = require('passport')
+const flash = require('express-flash')
+const session = require('express-session')
+
 const app = express()
 
 //setting middlewares
@@ -41,7 +46,15 @@ app.get('/login', (req, res) => {
 })
 
 //Issues Routing
-app.use('/Issues', require('../routes/issues'))
+app.use('/issues', require('../routes/issues'))
+
+//Users Routing
+app.use('/users', require('../routes/users'))
+
+//TEMP
+app.get('/dashboard', (req, res) =>{
+    res.render('dashboard')
+})
 
 app.get('/', (req, res) => {
     res.redirect('/login')
