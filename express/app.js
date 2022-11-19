@@ -51,6 +51,11 @@ app.use('/issues', require('../routes/issues'))
 //Users Routing
 app.use('/users', require('../routes/users'))
 
+//TEMP
+app.get('/dashboard', (req, res) =>{
+    res.render('dashboard')
+})
+
 app.get('/', (req, res) => {
     res.redirect('/login')
 })
