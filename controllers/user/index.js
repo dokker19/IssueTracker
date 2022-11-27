@@ -8,6 +8,21 @@ const bcrypt = require('bcrypt')
 const { Users } = sequelize.models
 
 
+function checkAuthenticated(req, res, next){
+    if (req.isAuthenticated()){ 
+        return next()
+    } else{
+        res.redirect('/login')
+    }
+}
+function checkNotAuthenticated(req, res, next){
+    if (req.isAuthenticated()){
+        return res.redirect('/dashboard')
+    }
+    next()
+}
+
+
 // Index
 router.get('/', (req, res, next) => {
     // console.log('loggin sequelize.models!')
@@ -36,8 +51,11 @@ router.get('/showAll', (req, res, next) => {
 })
 
 //New
-router.get('/new', (req, res, next) => {
-    res.render('registerUser')
+router.get('/new', checkNotAuthenticated, (req, res, next) => {
+    res.render('registerUser', {
+        style: 'custom.css',
+        layout: 'basic',
+    })
 })
 
 //Create

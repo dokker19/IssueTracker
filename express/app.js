@@ -98,15 +98,22 @@ class App {
             next()
         }
         this.app.get('/login', checkNotAuthenticated, (req, res) => {
-            res.render('login')
+            res.render('login', {
+                style: 'custom.css',
+                layout: 'basic',
+            })
         })
         this.app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
             successRedirect: '/dashboard',
             failureRedirect:  './login',
             failureFlash: true,
         }))
-        this.app.get('/dashboard', checkAuthenticated, (req, res) =>{
-            res.render('dashboard', { name: req.user.username})
+        this.app.get('/dashboard',checkAuthenticated, (req, res) =>{
+            res.render('dashboard', { 
+                name: req.user.username,
+                style: './css/custom.css',
+                layout: 'main'
+            })
         })
         this.app.delete('/logout', (req, res) => {
             req.logout((err) => {
