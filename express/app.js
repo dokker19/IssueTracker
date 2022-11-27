@@ -23,7 +23,7 @@ class App {
         this.setMiddleWare()
         this.getRouting()
 
-        console.log('constructed.')
+        console.log('constructed!')
     }
 
     async dbConnection(){
