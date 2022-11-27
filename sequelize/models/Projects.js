@@ -4,7 +4,7 @@
 const { DataTypes } = require('sequelize')
 
 module.exports = (sequelize) => {
-    sequelize.define('issues', {
+    sequelize.define('Projects', {
         id: {
             allowNull: false,
             primaryKey: true,

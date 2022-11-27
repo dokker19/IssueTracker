@@ -4,7 +4,7 @@
 const { Sequelize, DataTypes, Model } = require('sequelize')
 
 module.exports = (sequelize) => {
-    sequelize.define('users', {
+    sequelize.define('Users', {
         id: {
             allowNull: false,
             primaryKey: true,
@@ -22,7 +22,10 @@ module.exports = (sequelize) => {
         password: {
             type: DataTypes.STRING,
         },
-        contact_email: {
+        email: {
+            type: DataTypes.STRING,
+        },
+        hashedPassword: {
             type: DataTypes.STRING,
         }
     })

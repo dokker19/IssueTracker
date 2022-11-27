@@ -4,7 +4,7 @@
 const { Sequelize, DataTypes, Model } = require('sequelize')
 
 module.exports = (sequelize) => {
-    sequelize.define('issues', {
+    sequelize.define('Issues', {
         id: {
             allowNull: false,
             primaryKey: true,
@@ -28,5 +28,9 @@ module.exports = (sequelize) => {
         issueDate:{
             type: DataTypes.DATE,
         }
+    }, {
+        sequelize,
+        createdAt: false,
+        updatedAt: false,
     })
 }

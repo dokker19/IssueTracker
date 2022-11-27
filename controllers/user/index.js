@@ -1,19 +1,20 @@
-//routes/users.js
 
 const express = require('express')
 const router = express.Router()
-const sequelize = require('../index2')
+const sequelize = require('../../sequelize')
+const bcrypt = require('bcrypt')
+
 
 const { Users } = sequelize.models
 
 
-
 // Index
 router.get('/', (req, res, next) => {
-    console.log('loggin sequelize.models!')
-    console.log(sequelize.models)
+    // console.log('loggin sequelize.models!')
+    // console.log(sequelize.models)
     Users.findAll()
         .then(users =>{
+            console.log("printing users!!!")
             console.log(users)
             res.render('showUsers', {
                 users
@@ -36,7 +37,7 @@ router.get('/showAll', (req, res, next) => {
 
 //New
 router.get('/new', (req, res, next) => {
-    res.redirect('/registerUser')
+    res.render('registerUser')
 })
 
 //Create
@@ -49,11 +50,14 @@ router.post('/', (req, res, next) => {
         .then(async (user) => {
             res.locals.lastID = user?user.id:0
             req.body['id'] = res.locals.lastID + 1
-            console.log('req.body: ')
-            console.log(req.body)
+            req.body['hashedPassword'] = await bcrypt.hash(req.body.password, 10)
+
+
+            // console.log('req.body: ')
+            // console.log(req.body)
 
             await Users.create(req.body)
-            res.render('dashboard')
+            res.redirect('/login')
         }).catch((err) => {
             res.json(err)
         })

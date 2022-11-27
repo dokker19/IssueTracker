@@ -1,3 +1,15 @@
 <div>
-    <h1>Welcome to the dashboard</h1>
+    <h1>Welcome to the dashboard, {{name}}</h1>
+     <form action="/logout?_method=DELETE" method="POST">
+        <button type="submit">Logout</button>
+     </form>
+
+     <button onclick="/projects">
+      My Projects
+     </button>
+
+     <form action="/issues">
+        <button type="submit">My Issues</button>
+     </form>
+
 </div>

@@ -40,11 +40,13 @@ router.get('/new', (req, res, next) => {
 
 //Create
 router.post('/', (req, res, next) => {
+    console.log('post new issue received!')
     console.log(req.body)
     Issues.findOne({
         order: [ ['id', 'DESC' ]],
     })
         .then((issue) => {
+            console.log('inside then')
             res.locals.lastID = issue?issue.id:0
             console.log('req.body: \n\n')
             console.log(req.body)
