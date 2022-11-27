@@ -53,8 +53,10 @@ app.use('/users', require('../routes/users'))
 
 //TEMP
 app.get('/dashboard', (req, res) =>{
-    res.render('dashboard')
-})
+    res.render('dashboard', {
+        style: 'custom.css',
+        layout: 'main',
+    })})
 
 app.get('/', (req, res) => {
     res.redirect('/login')
