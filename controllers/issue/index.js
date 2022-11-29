@@ -3,9 +3,11 @@
 const express = require('express')
 const router = express.Router()
 const sequelize = require('../../sequelize')
-const Users = require('../../sequelize/models/Users')
 
-const { Issues } = sequelize.models
+
+const Users = sequelize.models.user
+const Issues = sequelize.models.issue
+const Projects = sequelize.models.project
 
 
 
@@ -31,6 +33,8 @@ router.get('/showAll', (req, res) => {
     console.log('gotit')
     Issues.findAll()
         .then(issues => {
+            console.log('logging issues...')
+            console.log(issues)
             res.json(issues)
         })
         .catch(err => {
@@ -41,12 +45,30 @@ router.get('/showAll', (req, res) => {
 
 //Index
 router.get('/', (req, res, next) => {
-    Issues.findAll()
-        .then(issues => {
-            res.render('showIssues', {
-                issues
-            })
-        }).catch(err=>console.log(err))
+    let users, issues
+    let currentID = req.user.id
+    Users.findOne({ where: {
+        id: currentID
+    }}).then((data) => {
+        users = data
+        return users.getIssues()
+    }).then((data) => {
+        issues = data
+        res.render('showIssues', {
+            issues
+        })
+    }).catch(err => console.log(err))
+    
+
+    // Issues.findAll({ where: {
+    // }}).then(issues => {
+    //         console.log('req.user.id :')
+    //         console.log(req.user.id)
+
+    //         res.render('showIssues', {
+    //             issues
+    //         })
+    //     }).catch(err=>console.log(err))
 })
 
 //New

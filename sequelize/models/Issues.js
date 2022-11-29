@@ -4,13 +4,13 @@
 const { Sequelize, DataTypes, Model } = require('sequelize')
 
 module.exports = (sequelize) => {
-    sequelize.define('Issues', {
-        id: {
-            allowNull: false,
-            primaryKey: true,
-            type: DataTypes.INTEGER
-        },
-        ticketname: {
+    const Issue = sequelize.define('issue', {
+        // issue_id: {
+        //     allowNull: false,
+        //     primaryKey: true,
+        //     type: DataTypes.INTEGER
+        // },
+        issueTitle: {
             allowNull: false,
             type: DataTypes.STRING,
             valiate: {
@@ -23,14 +23,18 @@ module.exports = (sequelize) => {
         },
         //TODO: urgency type DataTypes Int? String?
         urgency: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
         },
         issueDate:{
             type: DataTypes.DATE,
-        }
+        },
+        status: {
+            type: DataTypes.INTEGER,
+        },
     }, {
         sequelize,
-        createdAt: false,
-        updatedAt: false,
+        timestamps:  false,
     })
+    
+    return Issue
 }
