@@ -66,11 +66,11 @@ class App {
 
         initializePassport(passport,
             async (username) => {
-                const foundUser = await sequelize.models.Users.findOne({where: {username: username}})
+                const foundUser = await sequelize.models.user.findOne({where: {username: username}})
                 return foundUser
             }, 
             async (id) => {
-                const foundUser2 = await sequelize. models.Users.findOne({where: {id: id}})
+                const foundUser2 = await sequelize. models.user.findOne({where: {id: id}})
                 return foundUser2
             })
 

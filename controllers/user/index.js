@@ -5,7 +5,7 @@ const sequelize = require('../../sequelize')
 const bcrypt = require('bcrypt')
 
 
-const { Users } = sequelize.models
+const Users  = sequelize.models.user
 
 
 function checkAuthenticated(req, res, next){

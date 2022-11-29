@@ -24,9 +24,10 @@ const modelDefiners = [
 for (const modelDefiner of modelDefiners) {
 	modelDefiner(sequelize);
 }
-
+//console.log(sequelize.models)
 // We execute any extra setup after the models are defined, such as adding associations.
 applyExtraSetup(sequelize);
 
 // We export the sequelize connection instance to be used around our app.
 module.exports = sequelize
+
