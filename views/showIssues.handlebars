@@ -1,16 +1,45 @@
-{{!-- <section id="users" class="container">
+
     <h1>All Issues</h1>
 
+<section id="users" class="container">
+    <h1 class="text-white">All Issues</h1>
+    <div class="row row-cols-3 g-3">
     {{#each issues}}
-        <div>
-        <h3 style="display: inline-block">{{dataValues.ticketname}}</h3>
-        <p style="display: inline-block">{{dataValues.description}}</p>
-        <p style="display: inline-block">Urgency: {{dataValues.urgency}}</p>
+        <div class="col">
+          <div class="card">
+            <div class="card-header bg-white">
+                <span class = "pull-left">
+                <h5 class="card-title">
+                    <i class="fa fa-flag"></i>
+                    Issue Title {{dataValues.IssueTitle}}
+                </h5>
+                </span>
+                <span class = "pull-right">
+                    <p>
+                        urgency
+                        {{dataValues.urgency}}
+                    </p>
+                </span>
+            </div>
+            <div class="card-body bg-white">
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+           </div>
+            <div class="card-footer">
+                <small class="text-warning pull-left"> 
+                    Status: {{dataValues.status}}
+                </small>
+                <small class="text-white pull-right">
+                    <i class="fa fa-calendar-o"></i>
+                    Date
+                    {{dataValues.IssueDate}}
+                    </small>
+            </div>
         </div>
+    </div>
     {{else}}
         <p>No Issues to be displayed!</p>
     {{/each}}
-
+    </div>
      <form action="/issues/new">
         <button type="submit">Add a new Issue</button>
      </form>

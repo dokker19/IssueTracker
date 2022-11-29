@@ -5,10 +5,10 @@ const router = express.Router()
 const sequelize = require('../../sequelize')
 
 
+
 const Users = sequelize.models.user
 const Issues = sequelize.models.issue
 const Projects = sequelize.models.project
-
 
 
 function checkAuthenticated(req, res, next){
@@ -45,6 +45,7 @@ router.get('/showAll', (req, res) => {
 
 //Index
 router.get('/', (req, res, next) => {
+
     let users, issues
     let currentID = req.user.id
     Users.findOne({ where: {
@@ -58,18 +59,9 @@ router.get('/', (req, res, next) => {
             issues
         })
     }).catch(err => console.log(err))
-    
 
-    // Issues.findAll({ where: {
-    // }}).then(issues => {
-    //         console.log('req.user.id :')
-    //         console.log(req.user.id)
 
-    //         res.render('showIssues', {
-    //             issues
-    //         })
-    //     }).catch(err=>console.log(err))
-})
+
 
 //New
 router.get('/new', (req, res, next) => {
