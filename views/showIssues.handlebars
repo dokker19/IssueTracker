@@ -43,41 +43,5 @@
      <form action="/issues/new">
         <button type="submit">Add a new Issue</button>
      </form>
-</section> --}}
-
-
-
-<section id="users" class="container">
-<h1 class="text-white">All Issues</h1>
-
-{{#each issues}}
-    <div class="container bg-white">
-        <div id="addIssue-row" class="row justify-content-center align-items-center" style="margin-top:3px">
-            <div id="addIssue-column" class="col-md-6-offset-0">
-                <div id="addIssue-box" class="bg-white col-md-12 addIssue">
-                    <div class="form-wrap align-items-center">
-                        <div class="justify-content-center align-items-center d-flex flex-row">
-                            <label class="radio mr-1"  for="title"><span>Issue Title: {{dataValues.IssueTitle}} </span></label>
-                        </div>
-                        <div class="justify-content-center align-items-center d-flex flex-row">
-                            <label class="radio mr-1"  for="title"><span>Issue description:{{dataValues.description}} </span></label>
-                        </div>
-                    </div>
-                </div>
-                <label> status: {{dataValues.status}} </label>
-                <br>
-                <label> Date: {{dataValues.IssueDate}} </label>
-                <br>
-                <label> Urgency: {{dataValues.urgency}}</label>
-                <br>
-            </div>
-        </div>
-    </div>
-{{else}}
-    <p>No Issues to be displayed!</p>
-{{/each}}
-
-    <form action="/issues/new">
-    <button type="submit">Add a new Issue</button>
-    </form>
 </section>
+

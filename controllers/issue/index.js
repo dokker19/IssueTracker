@@ -56,9 +56,12 @@ router.get('/', (req, res, next) => {
     }).then((data) => {
         issues = data
         res.render('showIssues', {
-            issues
+            issues,
+            style : './custom.css',
+            // layout: 'main'
         })
     }).catch(err => console.log(err))
+})
 
 
 

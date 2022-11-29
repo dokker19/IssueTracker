@@ -111,8 +111,7 @@ class App {
         this.app.get('/dashboard',checkAuthenticated, (req, res) =>{
             res.render('dashboard', { 
                 name: req.user.username,
-                style: './css/custom.css',
-                layout: 'main'
+                style: './custom.css',
             })
         })
         this.app.delete('/logout', (req, res) => {
