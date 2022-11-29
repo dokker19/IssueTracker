@@ -23,7 +23,7 @@
               </div>
               <div class="input-group">
                 <div class="justify-content-center align-items-center form-tag d-flex flex-row">
-                  <label class="radio mr-1 tag-text"  for="priority"><span> Urgency </span></label>
+                  <label class="radio mr-1 tag-text"  for="urgency"><span> Urgency </span></label>
                 </div>
                 <select name = "urgency" id = "urgency" class="form-select"> 
                   <option  value="1"> 1 </option>
@@ -35,20 +35,12 @@
                 <div class="justify-content-center align-items-center form-tag d-flex flex-row">
                   <label class="radio mr-1 tag-text"  for="priority"><span> Status </span></label>
                 </div>
-                <ul class="slider">
-                  <li class="slider-item">
-                    <label for="f-option">In Depth Knowledge</label>
-                    <input type="radio" id="f-option">
-                  </li>
-                  <li class="slider-item">
-                    <label for="g-option">Exellence & Education</label>
-                    <input type="radio" id="g-option">
-                  </li>
-                  <li class="slider-item">
-                    <label for="k-option">In Depth Knowledge</label>
-                    <input type="radio" id="k-option">
-                  </li>
-                </ul>
+                  <select name = "status" id = "status" class="form-select"> 
+                    <option  value="1"> Assigned </option>
+                    <option  value="2"> In Progress </option>
+                    <option  value="3"> Resolved </option>
+                  </select>
+                </div>
               </div>
               <div class="input-group"> 
                 <div class="justify-content-center align-items-center form-tag d-flex flex-row">
