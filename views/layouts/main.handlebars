@@ -27,23 +27,17 @@
                       <span  style="color:#1d1135; font-weight:lighter">Tracker</span>
                   </a>
                   <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                      <li class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle px-sm-0 px-1 text-white" id="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa fa-briefcase"></i> <span class="ms-1 d-none d-sm-inline">Projects</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdown">
-                            <li><a class="dropdown-item" href="#">Project 1</a></li>
-                            <li><a class="dropdown-item" href="#">Project 2</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">New Project</a></li>
-                        </ul>
+
+                      <li>
+                        <a href="/projects" class="nav-link px-0 align-middle text-white">
+                          <i class="fa fa-briefcase"></i> <span class="ms-1 d-none d-sm-inline">My Projects</span></a>
                       </li>
+
                       <li>
                         <a href="/issues" class="nav-link px-0 align-middle text-white">
-                          <i class="fa fa-user"></i> <span class="ms-1 d-none d-sm-inline">Issues</span></a>
+                          <i class="fa fa-user"></i> <span class="ms-1 d-none d-sm-inline">My Issues</span></a>
                       </li>
+
                       <li class="logout"> 
                         <form class="px-0 align-middle" action="/logout?_method=DELETE" method="POST">
                             <button class="btn logout-btn btn-primary" type="submit" >

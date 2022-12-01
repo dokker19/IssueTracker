@@ -11,6 +11,8 @@ router.use('/users', require('./user'))
 
 router.use('/issues', require('./issue'))
 
+router.use('/projects', require('./project'))
+
 
 module.exports= router
 

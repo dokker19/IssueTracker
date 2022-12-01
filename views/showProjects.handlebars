@@ -1,38 +1,28 @@
 
 
 <section id="users" class="container">
-    <h1 class="text-white">All Issues</h1>
+    <h1 class="text-white">All Projects</h1>
     <div class="row row-cols-3 g-3">
-    {{#each issues}}
+    {{#each projects}}
         <div class="col">
           <div class="card">
             <div class="card-header bg-white">
                 <span class = "pull-left">
                 <h5 class="card-title">
                     <i class="fa fa-flag"></i>
-                    Issue Title {{dataValues.IssueTitle}}
+                    Project Title {{dataValues.projectTitle}}
                 </h5>
                 </span>
                 <span class = "pull-right">
                     <p>
-                        urgency
-                        {{dataValues.urgency}}
+                        Start Date: 
+                        {{dataValues.startDate}}
                     </p>
                 </span>
             </div>
             <div class="card-body bg-white">
             <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
            </div>
-            <div class="card-footer">
-                <small class="text-warning pull-left"> 
-                    Status: {{dataValues.status}}
-                </small>
-                <small class="text-white pull-right">
-                    <i class="fa fa-calendar-o"></i>
-                    Date
-                    {{dataValues.IssueDate}}
-                    </small>
-            </div>
         </div>
     </div>
     {{else}}
