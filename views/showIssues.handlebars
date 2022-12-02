@@ -10,7 +10,7 @@
                 <span class = "pull-left">
                 <h5 class="card-title">
                     <i class="fa fa-flag"></i>
-                    Issue Title {{dataValues.IssueTitle}}
+                    {{dataValues.issueTitle}}
                 </h5>
                 </span>
                 <span class = "pull-right">
@@ -21,7 +21,7 @@
                 </span>
             </div>
             <div class="card-body bg-white">
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text">{{dataValues.description}}</p>
            </div>
             <div class="card-footer">
                 <small class="text-warning pull-left"> 
@@ -30,8 +30,13 @@
                 <small class="text-white pull-right">
                     <i class="fa fa-calendar-o"></i>
                     Date
-                    {{dataValues.IssueDate}}
-                    </small>
+                    {{dataValues.issueDate}}
+                </small>
+                <small> 
+                    <button class="btn logout-btn btn-primary" type="submit" >
+                        <i class="fa fa-pencil"></i> 
+                    </button>   
+                </small>
             </div>
         </div>
     </div>
