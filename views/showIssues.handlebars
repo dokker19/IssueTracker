@@ -32,11 +32,15 @@
                     Date
                     {{dataValues.issueDate}}
                 </small>
-                <small> 
-                    <button class="btn logout-btn btn-primary" type="submit" >
-                        <i class="fa fa-pencil"></i> 
-                    </button>   
-                </small>
+
+
+                <a href="/issues/{{dataValues.id}}/edit" class="btn btn-light mr-2">Edit</a>
+
+                <form action="/issues/{{dataValues.id}}?_method=delete" method="post">
+                    <a href="#" class="btn btn-light" onclick="confirm('Are you sure you want to delete this issue?')?this.parentElement.submit():null;">Delete</a>
+                </form>
+
+
             </div>
         </div>
     </div>

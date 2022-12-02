@@ -87,4 +87,39 @@ router.post('/', (req, res, next) => {
     }).catch(err => res.json(err))
 })
 
+
+//Edit
+router.get('/:id/edit', (req, res, next) => {
+    let issueID = req.params.id
+    Issues.findOne({ where: {
+        id: issueID,
+    }}).then((data) => {
+        console.log('logging the isssue..')
+        console.log(data)
+        res.render('editIssue', {
+            style: 'custom.css',
+            issue : data,
+        })
+    }).catch(err => console.log(err))
+})
+
+//Update
+router.put('/:id', async (req, res) => {
+   
+    const userToUpdate = await Issues.findOne({ where: {
+        id: req.params.id,
+    }})
+
+    //d.setTime( d.getTime() + d.getTimezoneOffset()*60*1000 );
+
+    console.log('reqissuedate: ' + req.body.issueDate)
+
+    userToUpdate.set(req.body)
+    //userToUpdate.issuedate = 
+    await userToUpdate.save()
+
+    res.redirect('/issues')
+})
+
+
 module.exports = router

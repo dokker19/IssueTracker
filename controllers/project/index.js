@@ -67,7 +67,6 @@ router.get('/', (req, res, next) => {
         res.render('showProjects', {
             projects,
             style : './custom.css',
-            // layout: 'main'
         })
     }).catch(err => console.log(err))
 })

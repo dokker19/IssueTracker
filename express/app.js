@@ -14,6 +14,8 @@ const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
 const sequelize = require('../sequelize')
+const pg = require('pg')
+pg.types.setTypeParser(1114, (str) => new Date((str.split(' ').join('T'))+'Z'));
 
 
 class App {
