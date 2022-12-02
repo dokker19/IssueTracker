@@ -3,11 +3,13 @@
 const express = require('express')
 const router = express.Router()
 const sequelize = require('../../sequelize')
+const { Op } = require('sequelize')
 
 const Users = sequelize.models.user
 const Issues = sequelize.models.issue
 const Projects = sequelize.models.project
-
+const UserProjects = sequelize.models.userproject
+const UsersIssues = sequelize.models.userissue
 
 function checkAuthenticated(req, res, next){
     if (req.isAuthenticated()){ 
@@ -44,13 +46,22 @@ router.get('/showAll', (req, res) => {
 //Index
 router.get('/', (req, res, next) => {
 
-    let users, projects
+    let users, projects, usersprojects
+    let projectIDs = []
     let currentID = req.user.id
     Users.findOne({ where: {
         id: currentID
-    }}).then((data) => {
+    }}).then(async (data) => {
         users = data
-        return users.getProject()
+        usersprojects = await UserProjects.findAll({where: {
+            userID: users.dataValues.id
+        }})
+        usersprojects.forEach((UP) => {
+            projectIDs.push(UP.dataValues.projectID)
+        })
+        return Projects.findAll({ where: {
+            id: { [Op.in]: projectIDs},
+        }})
     }).then((data) => {
         projects = data
         res.render('showProjects', {
