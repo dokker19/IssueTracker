@@ -33,7 +33,7 @@ class App {
             await sequelize.authenticate()
             console.log('Connection to db successfully established!')
         } catch(err) {
-            console.log('Unable to connect to th edb: ', err)
+            console.log('Unable to connect to th db: ', err)
         }
     }
     

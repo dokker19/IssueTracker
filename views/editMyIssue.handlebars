@@ -1,0 +1,91 @@
+<section id="add" class="container">
+    <div class="container">
+    <div id="addIssue-row" class="row justify-content-center align-items-center top-margin">
+      <div id="addIssue-column" class="col-md-6-offset-0">
+        <div id="addIssue-box" class="bg-white col-md-12 addIssue">
+          <div class="form-wrap align-items-center">
+            <div class="input-group justify-content-left align-items-center lightPurple"> 
+              <h1 style="margin-top:30px">Edit Issue</h1>
+              <i class="fa fa-pencil-square-o" style="font-size: 30px; margin-left:10px; margin-top:30px"></i>
+            </div>
+            {{#each errors}}
+              <div class="error">
+                <p>{{text}}</p>
+              </div>
+            {{/each}}
+            <form action="/issues/edit/{{issue.dataValues.id}}?_method=PUT" method="POST">
+              <div class="input-group justify-content-center align-items-center"> 
+                <div class="justify-content-center align-items-center form-tag d-flex flex-row">
+                  <label class="radio mr-1 tag-text"  for="title"><span>Title</span> </span></label>
+                </div>
+                <input type="text" name="issueTitle" id="ticketname" class="form-control" value={{issue.dataValues.issueTitle}}
+                  maxlength="100">
+              </div>
+              <div class="input-group">
+                <div class="justify-content-center align-items-center form-tag d-flex flex-row">
+                  <label class="radio mr-1 tag-text"  for="urgency"><span> Urgency </span></label>
+                </div>
+                <select name = "urgency" id = "urgency" class="form-select"> 
+                  <option  value="1" id="4"> 1 </option>
+                  <option  value="2" id="5"> 2 </option>
+                  <option  value="3" id="6"> 3 </option>
+                  <option  value="4" id="7"> 4 </option>
+                  <option  value="5" id="8"> 5 </option>
+                </select>
+                <div class="justify-content-center align-items-center form-tag d-flex flex-row">
+                  <label class="radio mr-1 tag-text"  for="priority"><span> Status </span></label>
+                </div>
+                  <select name = "status" id = "status" class="form-select"> 
+                    <option  value="1" id="1"> Assigned </option>
+                    <option  value="2" id="2"> In Progress </option>
+                    <option  value="3" id="3"> Resolved </option>
+                  </select>
+                </div>
+              </div>
+              <div class="input-group"> 
+                <div class="justify-content-center align-items-center form-tag d-flex flex-row">
+                  <label class="radio mr-1 tag-text text-center"  for="issueDate"><span>Date Assigned </span></label>
+                </div>
+                <input type="datetime" name="issueDate" required="required" id="issueDate" class="form-select"
+                  maxlength="100" >
+              </div>
+              <div class="input-group">
+                <textarea name="description" id="description" class="description-box"
+                  rows="10">{{issue.dataValues.description}}</textarea>
+              </div>
+              <div class="form-group text-right">
+                <input type="submit" value="Update Issue" class="btn btn-reverse add-button" style="background-color:#A37CF0;">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+    let activeStatus = document.getElementById({{issue.dataValues.status}})
+    activeStatus.selected=true;
+
+    let activeUrgency = document.getElementById({{issue.dataValues.urgency}} + 3)
+    console.log({{issue.dataValues.urgency}} + 3)
+    activeUrgency.selected=true;
+
+    let activeDate = document.getElementById('issueDate')
+    const mydate = new Date(`${{issue.dataValues.issueDate}}`);
+
+    //console.log(mydate.toString())
+
+    console.log(mydate.toString())
+    
+    let myDate = mydate.toString().slice(8, 10)
+    let myYear = mydate.toString().slice(11, 15)
+    let myMonth = mydate.getMonth() + 1
+
+    console.log('value: ')
+    console.log(myYear + '-' + myMonth + '-' + myDate);
+    
+    activeDate.value=myYear + '-' + myMonth + '-' + myDate;
+
+</script>

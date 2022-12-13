@@ -72,7 +72,7 @@ router.get('/', (req, res, next) => {
             order: [['urgency', 'ASC']] })
     }).then((data) => {
         issues = data
-        res.render('showIssues', {
+        res.render('showMyIssues', {
             issues,
             style : './custom.css',
             // layout: 'main'
@@ -127,13 +127,13 @@ router.post('/', (req, res, next) => {
 
 
 //Edit
-router.get('/:id/edit', (req, res, next) => {
+router.get('/:id/editIssue', (req, res, next) => {
     let issueID = req.params.id
     Issues.findOne({ where: {
         id: issueID,
     }}).then((data) => {
-        console.log('logging the isssue..')
-        console.log(data)
+        console.log('logging the datavalue id....\n\n\n')
+        console.log(data.dataValues.id)
         res.render('editIssue', {
             style: 'custom.css',
             issue : data,
@@ -141,6 +141,20 @@ router.get('/:id/edit', (req, res, next) => {
     }).catch(err => console.log(err))
 })
 
+//Edit for My Issues
+router.get('/:id/editMyIssue', (req, res, next) => {
+    let issueID = req.params.id
+    Issues.findOne({ where: {
+        id: issueID,
+    }}).then((data) => {
+        console.log('logging the datavalue id....\n\n\n')
+        console.log(data.dataValues.id)
+        res.render('editMyIssue', {
+            style: 'custom.css',
+            issue : data,
+        })
+    }).catch(err => console.log(err))
+})
 
 //Update
 router.put('/:id', async (req, res) => {
@@ -160,6 +174,21 @@ router.put('/:id', async (req, res) => {
     // issueToUpdate.
     // projID = 
     res.redirect('/projects/' + issueToUpdate.dataValues.projectID)
+})
+
+//Update for My Issues
+router.put('/edit/:id', async (req, res) => {
+
+
+    const issueToUpdate = await Issues.findOne({ where: {
+        id: req.params.id,
+    }})
+
+
+    issueToUpdate.set(req.body)
+    await issueToUpdate.save()
+
+    res.redirect('/issues')
 })
 
 
