@@ -1,9 +1,8 @@
-
-
 <section id="users" class="container">
     <h1 class="text-white">All Issues</h1>
-    <div class="row row-cols-3 g-3">
+    <div class="row row-cols-3">
     {{#each issues}}
+
         <div class="col">
           <div class="card">
             <div class="card-header bg-white">
@@ -14,25 +13,26 @@
                 </h5>
                 </span>
                 <span class = "pull-right">
-                    <p> urgency
-                        {{dataValues.urgency}}
-                    </p>
+                    Urgency <span id="urgency-badge" class="badge badge-pill badge-info">{{dataValues.urgency}}</span>
                 </span>
             </div>
             <div class="card-body bg-white">
             <p class="card-text">{{dataValues.description}}</p>
-            <p class="card-text">{{dataValues.status}}</p>
-            <p class="card-text">{{dataValues.issueDate}}</p>
-            <button class="btn logout-btn btn-edit pull-right" type="submit" >
-                <i class="fa fa-pencil"></i> 
-            </button>  
-
            </div>
             <div class="card-footer">
-
-                    <button class="btn logout-btn btn-primary pull-right" type="submit" >
-                        <i class="fa fa-trash"></i> 
-                    </button>   
+                <small class="pull-left text-white"> 
+                    Status <span id="urgency-badge" class="badge badge-pill badge-light">{{dataValues.status}}</span>
+                </small>
+                <small class="text-white pull-right">
+                    <i class="fa fa-calendar-o"></i>
+                    Date
+                    {{dataValues.issueDate}}
+                </small>
+                <br>
+                <a href="/issues/{{dataValues.id}}/edit" class="btn btn-light pull-right">Edit</a>
+                <form action="/issues/{{dataValues.id}}?_method=delete" method="post">
+                    <a href="#" class="btn btn-light pull-right mr-2" onclick="confirm('Are you sure you want to delete this issue?')?this.parentElement.submit():null;">Delete</a>
+                </form>
             </div>
         </div>
     </div>
@@ -42,3 +42,10 @@
     </div>
 </section>
 
+<script>
+    let badge = document.getElementById("urgency-badge")
+    console.log({{dataValues.urgency}} + 3 )
+
+  
+
+</script>
