@@ -8,10 +8,13 @@
           <div class="card">
             <div class="card-header bg-white">
                 <span class = "pull-left">
-                <h5 class="card-title">
-                    <i class="fa fa-flag"></i>
-                    Project Title {{dataValues.projectTitle}}
-                </h5>
+                    <form id="project-user-issue-form" action="/projects/{{dataValues.id}}" method="get">
+                        <input type="submit" value={{dataValues.projectTitle}}>
+                        {{!-- <h5 class="card-title">
+                            <i class="fa fa-flag"></i>
+                            {{dataValues.projectTitle}}
+                        </h5> --}}
+                    </form>
                 </span>
                 <span class = "pull-right">
                     <p>

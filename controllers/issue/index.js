@@ -9,6 +9,8 @@ const sequelize = require('../../sequelize')
 const Users = sequelize.models.user
 const Issues = sequelize.models.issue
 const Projects = sequelize.models.project
+const UsersIssues = sequelize.models.userissue
+const UsersProjects = sequelize.models.userproject
 
 
 function checkAuthenticated(req, res, next){
@@ -46,13 +48,28 @@ router.get('/showAll', (req, res) => {
 //Index
 router.get('/', (req, res, next) => {
 
+    //promise chaining for getting all isssues a user is part of
     let users, issues
     let currentID = req.user.id
     Users.findOne({ where: {
         id: currentID
     }}).then((data) => {
         users = data
-        return users.getIssues()
+        return UsersIssues.findAll({ where: {
+            userID: currentID,
+        }})
+    }).then((data) => {
+        issues = data
+        idArray = []
+        issues.forEach((issue) => {
+            idArray.push(issue.dataValues.issueID)
+        })
+        console.log('loggin idArray...\n\n')
+        console.log(idArray)
+        console.log('type is..' + typeof idArray[0])
+        return Issues.findAll({ 
+            where: { id: idArray },
+            order: [['urgency', 'ASC']] })
     }).then((data) => {
         issues = data
         res.render('showIssues', {
@@ -62,6 +79,27 @@ router.get('/', (req, res, next) => {
         })
     }).catch(err => console.log(err))
 })
+
+//Show
+// //Showing issues by ProjectID
+// router.get('/:id', (req, res) => {
+    
+//     let issues, projectID
+//     projectID = req.params.id
+//     Issues.findAll({ 
+//         where: { projectID: req.params.id },
+//         order: [[ 'urgency', 'ASC']]
+//     }).then((data) => {
+//         issues = data
+//         console.log('logging req.params.id...\n\n\n')
+//         console.log(req.params.id)
+//         res.render('showIssues', {
+//             issues, 
+//             style: './custom.css',
+//             projectID: projectID,
+//         })
+//     }).catch(err => console.log(err))
+// })
 
 
 
@@ -103,22 +141,25 @@ router.get('/:id/edit', (req, res, next) => {
     }).catch(err => console.log(err))
 })
 
+
 //Update
 router.put('/:id', async (req, res) => {
    
-    const userToUpdate = await Issues.findOne({ where: {
+    const issueToUpdate = await Issues.findOne({ where: {
         id: req.params.id,
     }})
 
-    //d.setTime( d.getTime() + d.getTimezoneOffset()*60*1000 );
 
-    console.log('reqissuedate: ' + req.body.issueDate)
-
-    userToUpdate.set(req.body)
+    issueToUpdate.set(req.body)
     //userToUpdate.issuedate = 
-    await userToUpdate.save()
+    await issueToUpdate.save()
 
-    res.redirect('/issues')
+    console.log('issueToUpdate...\n\n')
+    console.log(issueToUpdate)
+
+    // issueToUpdate.
+    // projID = 
+    res.redirect('/projects/' + issueToUpdate.dataValues.projectID)
 })
 
 
