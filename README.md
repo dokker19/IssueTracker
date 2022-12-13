@@ -2,7 +2,7 @@
 
 - [feat]: new feature
 - [bug]: bug fix
-- [fix]: layout/feature fix
+- [fix]: layout, feature fix
 - [docs]: documentation
 - [style]: stylling/formatting
 - [refactor]: code refactoring
