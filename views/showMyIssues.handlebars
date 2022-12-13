@@ -1,5 +1,5 @@
 <section id="users" class="container">
-    <h1 class="text-white">Issues from the {{projectName}}</h1>
+    <h1 class="text-white">My Issues</h1>
     <div class="row row-cols-3">
     {{#each issues}}
 
@@ -29,7 +29,7 @@
                     {{dataValues.issueDate}}
                 </small>
                 <br>
-                <a href="/issues/{{dataValues.id}}/editIssue" class="btn btn-light pull-right">Edit</a>
+                <a href="/issues/{{dataValues.id}}/editMyIssue" class="btn btn-light pull-right">Edit</a>
                 <form action="/issues/{{dataValues.id}}?_method=delete" method="post">
                     <a href="#" class="btn btn-light pull-right mr-2" onclick="confirm('Are you sure you want to delete this issue?')?this.parentElement.submit():null;">Delete</a>
                 </form>
