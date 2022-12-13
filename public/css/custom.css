@@ -46,12 +46,17 @@
 .sidebar { 
     background: #682bd7;
     position: absolute;
+    z-index: 1; 
+    height: 100%;
     top: 0;
     bottom: 0;
     font-family: Product Sans;
     font-size: 18px;
     transition: 0.4s;
     margin-left:-16%;
+    white-space: nowrap;
+    overflow-x: hidden;
+    width: 20%; 
 }
 
 .logout {
@@ -116,7 +121,7 @@ a:active { text-decoration: none; }
 }
 
 .active-cont { 
-    margin-left: 18%; 
+    margin-left: 19%; 
 }
 
 .register-form {
@@ -311,7 +316,6 @@ a:active { text-decoration: none; }
 }
 
 body{
-    margin-top:20px;
     background:#FAFAFA;
 }
 .order-card {

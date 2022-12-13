@@ -22,25 +22,25 @@
       <div class="row vh-100 overflow-auto">
           <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 d-flex sticky-top sidebar active-nav" id="sidebar">
               <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100 text-white">
-                  <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none" style="font-size:30px;">
+                  <a id="header"href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none" style="font-size:30px;">
                       <span class="fs-5 d-none d-sm-inline text-white" style="font-weight:bold">Issue</span>
-                      <span  style="color:#1d1135; font-weight:lighter">Tracker</span>
+                      <span style="color:#1d1135; font-weight:lighter">Tracker</span>
                   </a>
-                  <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                  <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-md-start align-items-sm-start" id="menu">
 
                       <li>
                         <a href="/dashboard" class="nav-link px-0 align-middle text-white">
-                          <i class="fa fa-home"></i> <span class="ms-1 d-none d-sm-inline">My Dashboard</span></a>
+                          <i class="fa fa-home"></i> <span class="ms-1 d-lg-block d-md-none">  My Dashboard</span></a>
                       </li>
 
                       <li>
                         <a href="/projects" class="nav-link px-0 align-middle text-white">
-                          <i class="fa fa-briefcase"></i> <span class="ms-1 d-none d-sm-inline">My Projects</span></a>
+                          <i class="fa fa-briefcase"></i> <span class="ms-1 d-none d-sm-inline">  My Projects</span></a>
                       </li>
 
                       <li>
                         <a href="/issues" class="nav-link px-0 align-middle text-white">
-                          <i class="fa fa-user"></i> <span class="ms-1 d-none d-sm-inline">My Issues</span></a>
+                          <i class="fa fa-user"></i> <span class="ms-1 d-none d-sm-inline">  My Issues</span></a>
                       </li>
                       
 
@@ -65,29 +65,29 @@
      </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <script> 
+      let menu = document.getElementById("menu")
       var menu_btn = document.querySelector(".menu-btn")
       var sidebar = document.querySelector(".sidebar")
       var container = document.querySelector(".my-container")
-
       let icon = document.getElementById("menu-icon")
-
+      let header = document.getElementById("header")
 
       menu_btn.addEventListener("click", ()=>{
         sidebar.classList.toggle("active-nav")
         container.classList.toggle("active-cont")
-
         icon.classList.toggle('fa-arrow-left')
         icon.classList.toggle('fa-arrow-right')
         
         if (icon.classList.contains('fa-arrow-right')) {
           document.body.classList.add('active')
+          menu.classList.remove('align-items-center')
+          menu.classList.add('align-items-start')
+
+
         } else { 
           document.body.classList.remove('active')
         }
-
-
       })
-
     </script>
   </body>
 </html>
