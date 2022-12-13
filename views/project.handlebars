@@ -1,0 +1,27 @@
+
+
+<section id="users" class="container">
+    <h1 class="text-white">All Projects</h1>
+    {{#grouped_each 4 issues}}
+        <div class="row">
+            {{#each this}}
+            <div class="col">
+                <div class="card mb-3" style="max-width: 18rem; border-color:#682bd7; border-width: 50px; border:solid;">
+                    <div class="card-header bg-white" style="back">
+                        <h5 class="card-title">My Project title</h5>
+                        <div class="align-items-center"> 
+                            <i class="fa fa-calendar pull-left"></i>
+                            <label class="pull-left"> 2022-11-12 </label>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text text-white">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-white">Footer</div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    {{/grouped_each}}
+</section>
+
