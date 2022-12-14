@@ -105,9 +105,11 @@ router.get('/', (req, res, next) => {
 
 
 //New
-router.get('/new', (req, res, next) => {
+router.post('/new', (req, res, next) => {
     res.render('newIssue', { 
         style: 'custom.css', 
+        projectID: req.body.projectID,
+        projectName: req.body.projectName,
     })
 })
 
@@ -117,11 +119,16 @@ router.post('/', (req, res, next) => {
     Issues.findOne({
         order: [ ['id', 'DESC' ]],
     }).then(async (issue) => {
+        console.log('logging req.body...\n\n')
         res.locals.lastID = issue?issue.id:0
         req.body['id'] = res.locals.lastID + 1
+        req.body['issuerID'] = req.user.id
+        console.log(req.body)
 
+        
         await Issues.create(req.body)
-        res.redirect('/issues')
+
+        // res.redirect('/issues')
     }).catch(err => res.json(err))
 })
 

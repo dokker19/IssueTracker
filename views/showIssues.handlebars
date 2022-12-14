@@ -1,5 +1,13 @@
 <section id="users" class="container">
     <h1 class="text-white">Issues from the {{projectName}}</h1>
+
+    <form action="/issues/new" method="POST">
+        <input type="hidden" name="projectID" value='{{projectID}}'>
+        <input type="hidden" name="projectName" value='{{projectName}}'>
+        <input type="submit" value="Add a new Issue">
+    </form>
+
+
     <div class="row row-cols-auto">
     {{#each issues}}
         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -12,9 +20,7 @@
                 </h5>
                 </span>
                 <span class = "pull-right">
-                    {{#when dataValues.urgency 'eq' 2}}
                         Urgency <span id="urgency-badge" class="badge badge-pill badge-info">{{dataValues.urgency}}</span>
-                    {{/when}}
                 </span>
             </div>
             <div class="card-body bg-white">
