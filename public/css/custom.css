@@ -47,7 +47,6 @@
     background: #682bd7;
     position: absolute;
     z-index: 1; 
-    height: 100%;
     top: 0;
     bottom: 0;
     font-family: Product Sans;
@@ -61,7 +60,7 @@
 
 .logout {
     position: absolute;
-    bottom: 20px;
+    bottom: 10%;
     /*left: 20px;*/
 }
 
@@ -121,7 +120,7 @@ a:active { text-decoration: none; }
 }
 
 .active-cont { 
-    margin-left: 19%; 
+    margin-left: 20%; 
 }
 
 .register-form {

@@ -22,15 +22,15 @@
       <div class="row vh-100 overflow-auto">
           <div class="col-12 col-sm-3 col-xl-2 px-sm-2 px-0 d-flex sticky-top sidebar active-nav" id="sidebar">
               <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100 text-white">
-                  <a id="header"href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none" style="font-size:30px;">
-                      <span class="fs-5 d-none d-sm-inline text-white" style="font-weight:bold">Issue</span>
+                  <a id="header"href="/" class="d-none d-sm-inline align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none" style="font-size:30px; white-space: nowrap; overflow-x: hidden;">
+                      <span class="fs-5 text-white" style="font-weight:bold">Issue</span>
                       <span style="color:#1d1135; font-weight:lighter">Tracker</span>
                   </a>
                   <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-md-start align-items-sm-start" id="menu">
 
                       <li>
                         <a href="/dashboard" class="nav-link px-0 align-middle text-white">
-                          <i class="fa fa-home"></i> <span class="ms-1 d-lg-block d-md-none">  My Dashboard</span></a>
+                          <i class="fa fa-home"></i> <span class="ms-1 d-none d-sm-inline">  My Dashboard</span></a>
                       </li>
 
                       <li>
@@ -47,7 +47,7 @@
                       <li class="logout"> 
                         <form class="px-0 align-middle" action="/logout?_method=DELETE" method="POST">
                             <button class="btn logout-btn btn-primary" type="submit" >
-                              <i class="fa fa-sign-out"></i> Logout  
+                              <i class="fa fa-sign-out"></i> <span class="ms-1 d-none d-sm-inline">  Logout  </span>
                               </button>                       
                         </form>
                       </li>

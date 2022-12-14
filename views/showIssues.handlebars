@@ -12,7 +12,9 @@
                 </h5>
                 </span>
                 <span class = "pull-right">
-                    Urgency <span id="urgency-badge" class="badge badge-pill badge-info">{{dataValues.urgency}}</span>
+                    {{#when dataValues.urgency 'eq' 2}}
+                        Urgency <span id="urgency-badge" class="badge badge-pill badge-info">{{dataValues.urgency}}</span>
+                    {{/when}}
                 </span>
             </div>
             <div class="card-body bg-white">
@@ -20,7 +22,15 @@
            </div>
             <div class="card-footer">
                 <small class="pull-left text-white"> 
-                    Status <span id="urgency-badge" class="badge badge-pill badge-light">{{dataValues.status}}</span>
+                    {{#when dataValues.status 'eq' 1}}
+                        Status <span class="badge badge-pill badge-light">To Do</span>
+                    {{/when}}
+                    {{#when dataValues.status 'eq' 2}}
+                        Status <span class="badge badge-pill badge-light">In Progress</span>
+                    {{/when}}
+                    {{#when dataValues.status 'eq' 3}}
+                        Status <span class="badge badge-pill badge-light">Done</span>
+                    {{/when}}
                 </small>
                 <small class="text-white pull-right">
                     <i class="fa fa-calendar-o"></i>
