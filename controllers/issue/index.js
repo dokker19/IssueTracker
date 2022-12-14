@@ -128,10 +128,55 @@ router.post('/', (req, res, next) => {
         
         await Issues.create(req.body)
 
-        // res.redirect('/issues')
+        res.redirect('/issues')
     }).catch(err => res.json(err))
 })
 
+//Assign New user (New)
+router.get('/:id/assignUser', (req, res) => {
+
+    let issueID = req.params.id
+    console.log('logging issueID...' + issueID)
+    res.render('assignUser', {
+        style: 'custom.css',
+        issueID: issueID
+    })
+    // let issue
+    // Issues.findOne({ where: {
+    //     id: issueID,
+    // }}).then((data) => {
+    //     issue = data
+    //     issue.addUsers()
+    // })
+})
+
+//Assign New user (Update)
+router.post('/:id', (req, res) => {
+    let issueID = req.params.id
+    console.log('logging issueID...' + issueID)
+
+    let issue
+    let username = req.body.username
+    Issues.findOne({ where: {
+        id: issueID,
+    }}).then((data) => {
+        issue = data
+        console.log('logging issue...' + issue)
+        return Users.findOne({ 
+            where: { username: username },
+        })
+    }).then((data)=> {
+        if (!data) {
+            res.render('assignUser', {
+                style: 'custom.css',
+                issueID: req.params.id,
+                err: "no user found!",
+            })
+        } else{
+            issue.addUsers(data)
+        }
+    }).catch(err => console.log(err))
+})
 
 //Edit
 router.get('/:id/editIssue', (req, res, next) => {
