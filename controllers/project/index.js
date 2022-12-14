@@ -75,11 +75,12 @@ router.get('/', (req, res, next) => {
 //Show
 router.get('/:id', (req, res) => {
 
-    let issues, projectName
+    let issues, projectName, projectID
     Projects.findOne({ 
         where: { id: req.params.id },
     }).then((data) => {
         projectName = data.dataValues.projectTitle
+        projectID = data.dataValues.id
          return Issues.findAll({ 
         where: { projectID: req.params.id},
         order: [[ 'urgency', 'ASC' ] ]})
@@ -88,6 +89,7 @@ router.get('/:id', (req, res) => {
         res.render('showIssues', {
             issues, 
             projectName: projectName,
+            projectID: projectID,
             style: './custom.css',
         })
     }).catch(err => console.log(err))

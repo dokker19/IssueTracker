@@ -5,7 +5,7 @@
         <div id="addIssue-box" class="bg-white col-md-12 addIssue">
           <div class="form-wrap align-items-center">
             <div class="input-group justify-content-left align-items-center lightPurple"> 
-              <h1 style="margin-top:30px">Add New Issue</h1>
+              <h1 style="margin-top:30px">Add New Issue for {{projectName}}</h1>
               <i class="fa fa-pencil-square-o" style="font-size: 30px; margin-left:10px; margin-top:30px"></i>
             </div>
             {{#each errors}}
@@ -14,12 +14,13 @@
               </div>
             {{/each}}
             <form action="/issues" method="POST">
+              <input type="hidden" name="projectID" value={{projectID}}>
               <div class="input-group justify-content-center align-items-center"> 
                 <div class="justify-content-center align-items-center form-tag d-flex flex-row">
                   <label class="radio mr-1 tag-text"  for="title"><span>Title </span></label>
                 </div>
-                <input type="text" name="ticketname" id="ticketname" class="form-control" placeholder="eg. Issue #1"
-                  maxlength="100" value={{ticketname}}>
+                <input type="text" name="issueTitle" id="ticketname" class="form-control" placeholder="eg. Issue #1"
+                  maxlength="100">
               </div>
               <div class="input-group">
                 <div class="justify-content-center align-items-center form-tag d-flex flex-row">
