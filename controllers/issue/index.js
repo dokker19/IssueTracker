@@ -105,9 +105,11 @@ router.get('/', (req, res, next) => {
 
 
 //New
-router.get('/new', (req, res, next) => {
+router.post('/new', (req, res, next) => {
     res.render('newIssue', { 
         style: 'custom.css', 
+        projectID: req.body.projectID,
+        projectName: req.body.projectName,
     })
 })
 
@@ -117,14 +119,64 @@ router.post('/', (req, res, next) => {
     Issues.findOne({
         order: [ ['id', 'DESC' ]],
     }).then(async (issue) => {
+        console.log('logging req.body...\n\n')
         res.locals.lastID = issue?issue.id:0
         req.body['id'] = res.locals.lastID + 1
+        req.body['issuerID'] = req.user.id
+        console.log(req.body)
 
+        
         await Issues.create(req.body)
+
         res.redirect('/issues')
     }).catch(err => res.json(err))
 })
 
+//Assign New user (New)
+router.get('/:id/assignUser', (req, res) => {
+
+    let issueID = req.params.id
+    console.log('logging issueID...' + issueID)
+    res.render('assignUser', {
+        style: 'custom.css',
+        issueID: issueID
+    })
+    // let issue
+    // Issues.findOne({ where: {
+    //     id: issueID,
+    // }}).then((data) => {
+    //     issue = data
+    //     issue.addUsers()
+    // })
+})
+
+//Assign New user (Update)
+router.post('/:id', (req, res) => {
+    let issueID = req.params.id
+    console.log('logging issueID...' + issueID)
+
+    let issue
+    let username = req.body.username
+    Issues.findOne({ where: {
+        id: issueID,
+    }}).then((data) => {
+        issue = data
+        console.log('logging issue...' + issue)
+        return Users.findOne({ 
+            where: { username: username },
+        })
+    }).then((data)=> {
+        if (!data) {
+            res.render('assignUser', {
+                style: 'custom.css',
+                issueID: req.params.id,
+                err: "no user found!",
+            })
+        } else{
+            issue.addUsers(data)
+        }
+    }).catch(err => console.log(err))
+})
 
 //Edit
 router.get('/:id/editIssue', (req, res, next) => {
