@@ -1,11 +1,11 @@
-# IssueTracker 
+## **Commit Type**
 
-- [feat]: new feature
+- [feat]: new feature
 - [bug]: bug fix
-- [fix]: layout, feature fix
-- [docs]: documentation
-- [style]: stylling/formatting
-- [refactor]: code refactoring
-- [test]: test code addition
-- [chore]: build task/package manager modification
-- [perf]: performance improvement
+- [fix]: layout or feature fix 
+- [style]: code formatting
+- [refactor]: code refactoring 
+- [test]: test code 
+- [chore]: build tasks 
+- [perf]: performance improvement
+- [docs] : documentation
