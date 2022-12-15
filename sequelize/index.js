@@ -9,7 +9,7 @@ const { applyExtraSetup } = require('./extra-setup');
 
 const fs = require('fs')
 
-const sequelize = new Sequelize('issuetrack', 'postgres', 'qwer1023', {
+const sequelize = new Sequelize('issuetrack', 'dokyungyang', 'qwer1023', {
     host: 'localhost',
     dialect: 'postgres',
 	timezone: "+00:00",

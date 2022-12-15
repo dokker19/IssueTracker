@@ -26,8 +26,7 @@ function checkNotAuthenticated(req, res, next){
 }
 
 
-// showAll (HIDDEN)
-
+// Show All Projects(HIDDEN)
 router.get('/showAll', (req, res) => {
     //console.log('gotit')
     Projects.findAll()
@@ -42,9 +41,7 @@ router.get('/showAll', (req, res) => {
         })
 })
 
-
-//Index
-// show all projects that user belongs to
+// Show all of the projects that user belongs to
 router.get('/', (req, res, next) => {
 
     let users, projects, usersprojects
@@ -72,7 +69,78 @@ router.get('/', (req, res, next) => {
     }).catch(err => console.log(err))
 })
 
-//Show
+//New Project
+router.get('/new', (req, res) => {
+    let creatorID = req.user.id
+    res.render('addProject', {
+        creatorID: creatorID,
+        style: './custom.css',
+    })
+})
+
+//Create Project
+router.post('/', (req, res) => {
+
+    let proj
+
+    Projects.findOne({
+        order: [ [ 'id', 'DESC' ] ],
+    }).then(async (project) => {
+        req.body['id'] = project ? project.id + 1 : 201
+        await Projects.create(req.body)
+        return Projects.findOne({
+            where: { id: req.body['id'] }
+        })
+    }).then((project) => {
+        proj = project
+        return Users.findOne({
+            where: { id: req.user.id },
+        })
+    }).then( async (user) => {
+        console.log('found user: ' + user)
+        await proj.addUsers(user)
+        res.redirect('/projects')
+    }).catch(err => console.log(err))
+})
+
+//Add User to Project (FORM)
+router.get('/:id/addUser', (req, res) => {
+    let projectID = req.params.id
+    res.render('addUser', {
+        projectID: projectID,
+        style: './custom.css',
+    })
+})
+
+//Adds User to Project
+router.post('/:id/addUser', (req, res) => {
+
+    let projectID = req.params.id
+    let user
+
+    Users.findOne({
+        where: { username: req.body.username }
+    }).then((usr) => {
+        user = usr
+        return Projects.findOne({
+            where: { id: projectID },
+        })
+    }).then(async (project) => {
+        if (!user) {
+            res.render('addUser', {
+                projectID: projectID,
+                style: './custom.css',
+                err: 'no user found',
+            })
+        }else{
+            await project.addUsers(user)
+            res.redirect('/projects/' + projectID)
+        }
+
+    }).catch(err => console.log(err))
+})
+
+//Show All Issues of a project
 router.get('/:id', (req, res) => {
 
     let issues, projectName, projectID

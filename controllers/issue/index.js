@@ -45,7 +45,7 @@ router.get('/showAll', (req, res) => {
         })
 })
 
-//Index
+//Index - show all issues user is assigned to
 router.get('/', (req, res, next) => {
 
     //promise chaining for getting all isssues a user is part of
@@ -80,31 +80,9 @@ router.get('/', (req, res, next) => {
     }).catch(err => console.log(err))
 })
 
-//Show
-// //Showing issues by ProjectID
-// router.get('/:id', (req, res) => {
-    
-//     let issues, projectID
-//     projectID = req.params.id
-//     Issues.findAll({ 
-//         where: { projectID: req.params.id },
-//         order: [[ 'urgency', 'ASC']]
-//     }).then((data) => {
-//         issues = data
-//         console.log('logging req.params.id...\n\n\n')
-//         console.log(req.params.id)
-//         res.render('showIssues', {
-//             issues, 
-//             style: './custom.css',
-//             projectID: projectID,
-//         })
-//     }).catch(err => console.log(err))
-// })
 
 
-
-
-//New
+//New Issue (FORM)
 router.post('/new', (req, res, next) => {
     res.render('newIssue', { 
         style: 'custom.css', 
@@ -113,7 +91,7 @@ router.post('/new', (req, res, next) => {
     })
 })
 
-//Create
+//Create Issue
 router.post('/', (req, res, next) => {
     console.log(req.body)
     Issues.findOne({
@@ -128,68 +106,92 @@ router.post('/', (req, res, next) => {
         
         await Issues.create(req.body)
 
-        res.redirect('/issues')
+        res.redirect('/projects/' + req.body.projectID)
     }).catch(err => res.json(err))
 })
 
-//Assign New user (New)
+//Assign user to Issue FORM (given user is in the project)
 router.get('/:id/assignUser', (req, res) => {
-
-    let issueID = req.params.id
-    console.log('logging issueID...' + issueID)
     res.render('assignUser', {
         style: 'custom.css',
-        issueID: issueID
+        issueID: req.params.id,
     })
-    // let issue
-    // Issues.findOne({ where: {
-    //     id: issueID,
-    // }}).then((data) => {
-    //     issue = data
-    //     issue.addUsers()
-    // })
 })
+//Assign user to Issue (given user is in the project)
+router.post('/:id/assignUser', (req, res) => {
 
-//Assign New user (Update)
-router.post('/:id', (req, res) => {
-    let issueID = req.params.id
-    console.log('logging issueID...' + issueID)
+    let user, project, issue, projectID, users
+    let idArray = []
 
-    let issue
-    let username = req.body.username
-    Issues.findOne({ where: {
-        id: issueID,
-    }}).then((data) => {
+    Issues.findOne({ 
+        where: { id: req.params.id }
+    }).then((data) => {
         issue = data
-        console.log('logging issue...' + issue)
-        return Users.findOne({ 
-            where: { username: username },
+        return issue.getProject()
+    }).then((data) => {
+        project = data
+        projectID = data.dataValues.id
+        return project.getUsers()
+    }).then((data) => {
+        users = data
+        //gets all users in that issue's project, save their ids
+        users.forEach((usr) => {
+            idArray.push(usr.dataValues.id)
         })
-    }).then((data)=> {
-        if (!data) {
+        return Users.findOne({
+            where: { username : req.body.username }
+        })
+    }).then((data) => {
+        user = data
+        if (!user) {
+            //user to be added does not exist
             res.render('assignUser', {
                 style: 'custom.css',
                 issueID: req.params.id,
-                err: "no user found!",
+                err: 'user not found',
             })
-        } else{
-            issue.addUsers(data)
+        }else if (!idArray.includes(user.dataValues.id)) {
+            //user to be added exists, but not in the project
+            res.render('assignUser', {
+                style: 'custom.css',
+                issueID: req.params.id,
+                err: 'User not in the Project. Please add user to the project first',
+            })
+        }else{
+            issue.addUsers(user)
+            res.redirect('/projects/' + projectID)
         }
     }).catch(err => console.log(err))
 })
 
+
+
 //Edit
 router.get('/:id/editIssue', (req, res, next) => {
-    let issueID = req.params.id
-    Issues.findOne({ where: {
-        id: issueID,
-    }}).then((data) => {
-        console.log('logging the datavalue id....\n\n\n')
-        console.log(data.dataValues.id)
-        res.render('editIssue', {
-            style: 'custom.css',
-            issue : data,
+
+    let issue, users, projectID, project
+    let userIdArray = []
+
+    Issues.findOne({
+        where: { id: req.params.id }
+    }).then(async(data) => {
+        issue = data
+        project = await issue.getProject()
+        projectID = project.dataValues.id
+        return issue.getUsers()
+    }).then((data) => {
+        users = data
+        users.forEach((usr) => {
+            userIdArray.push(usr.dataValues.id)
         })
+        if (!userIdArray.includes(req.user.id)){
+            res.redirect('/projects/' + projectID)
+        } else{
+            res.render('editIssue', {
+                style: 'custom.css',
+                issue: issue
+            })
+        }
     }).catch(err => console.log(err))
 })
 
