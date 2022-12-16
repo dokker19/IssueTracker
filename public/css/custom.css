@@ -115,7 +115,7 @@ a:active { text-decoration: none; }
 }
 
 .active-cont { 
-    margin-left: 30px;
+    margin-left: 50px;
 }
 
 .register-form {
@@ -329,6 +329,12 @@ body{
     padding: 25px;
 }
 
+.heading { 
+    margin-top: 60px;
+    margin-bottom: 1vh;
+    height:max-content;
+}
+
 @media (max-width: 575.98px) { 
     .sidebar{ 
         width: 100px;
@@ -340,5 +346,14 @@ body{
     }
     .my-container{ 
         margin-left: 100px;
+    }
+}
+
+@media (max-height: 600px) { 
+    .heading { 
+        margin-top: 10px; 
+    }
+    .content h2{ 
+        font-size: 3em;
     }
 }
