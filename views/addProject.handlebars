@@ -1,0 +1,29 @@
+
+<h1 style="margin-top:30px; color: white">Add New Project</h1>
+{{#each errors}}
+		<div class="error">
+		<p>{{text}}</p>
+		</div>
+{{/each}}
+<form action="/projects" method="POST">
+
+	<input type="hidden" required="required" name="creatorID" value={{creatorID}}>
+
+
+	<label style="color: white;"class="radio mr-1 tag-text" for="projectTitle"><span>Title</span></label>
+	<input type="text" required="required" id="projectTitle" name="projectTitle">
+
+
+	<div class="input-group"> 
+			<div class="justify-content-center align-items-center form-tag d-flex flex-row">
+				<label class="radio mr-1 tag-text text-center"  for="startDate"><span>Start Date</span></label>
+			</div>
+			<input type="date" name="startDate" required="required" id="startDate" class="form-select" placeholder="eg. Issue #1"
+				maxlength="100" >
+	</div>
+
+	<input type="submit" class="btn btn-reverse add-button" style="background-color:#A37CF0;">
+
+
+</form>
+             

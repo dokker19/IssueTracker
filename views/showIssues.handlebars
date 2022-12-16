@@ -8,6 +8,10 @@
     </form>
 
 
+    <a href="/projects/{{projectID}}/addUser" class="btn btn-light pull-right">Add New User To Project</a>
+
+
+
     <div class="row row-cols-auto">
     {{#each issues}}
         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -44,6 +48,7 @@
                     {{dataValues.issueDate}}
                 </small>
                 <br>
+                <h5 style="color: red">{{err}}</h5>
                 <a href="/issues/{{dataValues.id}}/assignUser" class="btn btn-light pull-right">Assign</a>
                 <a href="/issues/{{dataValues.id}}/editIssue" class="btn btn-light pull-right">Edit</a>
                 <form action="/issues/{{dataValues.id}}?_method=delete" method="post">
