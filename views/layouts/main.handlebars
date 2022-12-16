@@ -26,7 +26,7 @@
                       <span class="fs-5 text-white" style="font-weight:bold">Issue</span>
                       <span style="color:#1d1135; font-weight:lighter">Tracker</span>
                   </a>
-                  <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-md-start align-items-sm-start" id="menu">
+                  <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center" id="menu">
 
                       <li>
                         <a href="/dashboard" class="nav-link px-0 align-middle text-white">
@@ -77,13 +77,13 @@
         container.classList.toggle("active-cont")
         icon.classList.toggle('fa-arrow-left')
         icon.classList.toggle('fa-arrow-right')
-        
+        header.classList.toggle('d-none')
+        menu.classList.toggle('d-none')
+
         if (icon.classList.contains('fa-arrow-right')) {
           document.body.classList.add('active')
           menu.classList.remove('align-items-center')
           menu.classList.add('align-items-start')
-
-
         } else { 
           document.body.classList.remove('active')
         }
