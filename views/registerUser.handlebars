@@ -1,38 +1,30 @@
-<div id="register" class="background">
-  <div class="container text-info">
-    <div id="register-row" class="row justify-content-center align-items-center top-margin" style="color:#682bd7">
-      <div id="register-column" class="col-md-6">
-        <div id="register-box" class="col-md-12 register-form p-3 mb-2 bg-white" style="margin-top: 15%">
-          <form id="register-form" class="form" action="/users" method="POST">
-            <h3 class="text-center">Sign Up</h3>
-            <p class="text-center">Please fill in this form to create an account!</p>
-            <div class="form-group">
-              <i class="fa fa-user"></i>
-              <label for="username" style="color:#682bd7">Username<sup class="sup">*</sup></label><br>
-              <input type="text" name="username" id="username" class="form-control">
-            </div>
-            <div class="form-group">
-              <i class="fa fa-user"></i>
-              <label for="email" style="color:#682bd7">Email<sup class="sup">*</sup></label><br>
-              <input type="text" name="email" id="email" class="form-control">
-            </div>
-            <div class="form-group">
-              <i class="fa fa-lock"></i>
-              <label for="password" style="color:#682bd7">Password<sup class="sup">*</sup></label><br>
-              <input type="text" name="password" id="password" class="form-control">
-            </div>
-            <div class="form-group">
-              <i class="fa fa-check"></i>
-              <label for="confirm-password" style="color:#682bd7">Confirm Password<sup class="sup">*</sup></label><br>
-              <input type="text" name="confirm-password" id="confirm-password" class="form-control">
-            </div>
-            <div class="form-group text-center">
-              <input type="submit" name="submit" class="btn btn-md add-button" style="background:#A37CF0; color:#682bd7; width:400px"value="Sign Up">
-            </div>
-          </form>
-        </div>
-        <div class="text-center text-white">Already have an account? <a class="text-white" href="/login">Login here</a></div>
-      </div>
-    </div> 
-  </div>
+<div class="rounded d-flex justify-content-center align-items-center" style="margin-top:4vh;">
+  <form id="register-form" class="card form p-3 p-sm-3 bg-white" style="color:#682bd7; width:30em; height:75vh; overflow:auto" action="/users" method="POST">
+    <h3 class="text-center">Sign Up</h3>
+    <p class="text-center">Please fill in this form to create an account!</p>
+    <div class="form-group">
+      <i class="fa fa-user"></i>
+      <label for="username">Username<sup class="sup">*</sup></label><br>
+      <input type="text" name="username" id="username" class="form-control" style="height:40px">
+    </div>
+    <div class="form-group">
+      <i class="fa fa-user"></i>
+      <label for="email">Email<sup class="sup">*</sup></label><br>
+      <input type="text" name="email" id="email" class="form-control" style="height:40px">
+    </div>
+    <div class="form-group">
+      <i class="fa fa-lock"></i>
+      <label for="password">Password<sup class="sup">*</sup></label><br>
+      <input type="text" name="password" id="password" class="form-control" style="height:40px">
+    </div>
+    <div class="form-group">
+      <i class="fa fa-check"></i>
+      <label for="confirm-password" ≈>Confirm Password<sup class="sup">*</sup></label><br>
+      <input type="text" name="confirm-password" id="confirm-password" class="form-control" style="height:40px">
+    </div>
+    <div class="form-group text-center">
+      <input type="submit" name="submit" class="btn btn-block add-button" style="background:#A37CF0; color:#682bd7;"value="Sign Up">
+    </div>
+    <div class="text-center">Already have an account? <a href="/login" style="color:#682bd7">Login here</a></div>
+  </form>
 </div>
