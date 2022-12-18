@@ -5,25 +5,25 @@
 		<p>{{text}}</p>
 		</div>
 {{/each}}
-<form action="/projects" method="POST">
-
-	<input type="hidden" required="required" name="creatorID" value={{creatorID}}>
-
-
-	<label style="color: white;"class="radio mr-1 tag-text" for="projectTitle"><span>Title</span></label>
-	<input type="text" required="required" id="projectTitle" name="projectTitle">
-
-
-	<div class="input-group"> 
-			<div class="justify-content-center align-items-center form-tag d-flex flex-row">
-				<label class="radio mr-1 tag-text text-center"  for="startDate"><span>Start Date</span></label>
-			</div>
-			<input type="date" name="startDate" required="required" id="startDate" class="form-select" placeholder="eg. Issue #1"
-				maxlength="100" >
-	</div>
-
-	<input type="submit" class="btn btn-reverse add-button" style="background-color:#A37CF0;">
-
-
-</form>
+<div class="rounded d-flex justify-content-start align-items-start">
+				<form action="/projects" class="card form p-4 p-sm-3"  method="POST" style="width:30em;">
+					<input type="hidden" required="required" name="creatorID" value={{creatorID}}>
+					<div class="input-group justify-content-center align-items-center"> 
+						<div class="justify-content-center align-items-center form-tag d-flex flex-row">
+							<label class="radio mr-1 tag-text" for="projectTitle"><span>Title</span></label>
+						</div>
+						<input type="text" class="form-control mt-3"required="required" id="projectTitle" name="projectTitle">
+					</div>
+					<div class="input-group"> 
+							<div class="justify-content-center align-items-center form-tag d-flex flex-row">
+								<label class="radio mr-1 tag-text text-center"  for="startDate"><span>Start Date</span></label>
+							</div>
+							<input type="date" name="startDate" required="required" id="startDate" class="form-select" placeholder="eg. Issue #1"
+								maxlength="100">
+					</div>
+					<br>
+					<input type="submit" class="btn btn-block btn-reverse add-button" style="background-color:#A37CF0;">
+					<br> 
+				</form>
+</div>
              
