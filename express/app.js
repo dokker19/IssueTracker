@@ -78,6 +78,8 @@ class App {
             return out;
         });
 
+        hbs.handlebars.registerHelper('dateFormat', require('handlebars-dateformat'));
+
         this.app.use(methodOverride('_method'))
         this.app.use((req, res, next) => {
             //CORS
