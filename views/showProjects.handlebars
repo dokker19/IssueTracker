@@ -1,32 +1,27 @@
-<section id="users" class="container">
 
     <h1 class="text-white">My Projects</h1>
-
-    <a href="/projects/new" class="btn btn-light pull-right">Add Project</a>
-
+    <a href="/projects/new" class="btn btn-outline-light mb-3">Add Project
+    <i class="fa fa-plus"></i>
+    </a>
     <div class="row row-cols-auto g-3">
     {{#each projects}}
         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
           <div class="card">
             <div class="card-header bg-white">
                 <span class = "pull-left">
-                    <form id="project-user-issue-form" action="/projects/{{dataValues.id}}" method="get">
-                        <input type="submit" value={{dataValues.projectTitle}}>
-                        {{!-- <h5 class="card-title">
-                            <i class="fa fa-flag"></i>
-                            {{dataValues.projectTitle}}
-                        </h5> --}}
-                    </form>
-                </span>
-                <span class = "pull-right">
+                    <h3>
+                      {{dataValues.projectTitle}}
+                    </h3>
                     <p>
-                        Start Date: 
-                        {{dataValues.startDate}}
+                        <i class="fa fa-calendar-o"></i>
+                        {{dateFormat dataValues.startDate "LL" utc}}
                     </p>
                 </span>
             </div>
-            <div class="card-body bg-white">
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <div class="card-body" style="border-color:#A37CF0; border:2px solid;">
+                <form id="project-user-issue-form" action="/projects/{{dataValues.id}}" method="get">
+                        <input class="btn btn-light pull-right" type="submit" value="View">
+                </form>
            </div>
         </div>
     </div>
@@ -34,5 +29,4 @@
         <p style="color: white;">No Issues to be displayed!</p>
     {{/each}}
     </div>
-</section>
 
