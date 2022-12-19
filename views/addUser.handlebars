@@ -1,5 +1,11 @@
 <h4 style="color: red">{{err}}</h4>
-<form action="/projects/{{projectID}}/addUser" method="POST">
-    <input type="text" name="username">
-    <input type="submit" style="background-color: aquamarine" class="btn btn-reverse add-button">
-</form>
+<h1 style="margin-top:30px; color: white">Add User</h1>
+<div class="rounded d-flex justify-content-start align-items-start">
+    <form class="card form p-4 p-sm-3" action="/projects/{{projectID}}/addUser" method="POST">
+        <p class="text-white"> Please enter the username </p>
+        <div class="input-group mb-3"> 
+            <input type="text" name="username" style="width:15em; height: 2.5em;">
+            <input type="submit" value="Add" class="btn btn-light ml-2 input-group-append" style="height:2.5em; background-color: transparent; border: 1px solid; border-color:#A37CF0; color:#A37CF0">
+        </div>
+    </form>
+</div>
