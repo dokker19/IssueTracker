@@ -1,32 +1,31 @@
-
-    <h1 class="text-white">My Projects</h1>
-    <a href="/projects/new" class="btn btn-outline-light mb-3">Add Project
-    <i class="fa fa-plus"></i>
-    </a>
-    <div class="row row-cols-auto g-3">
-    {{#each projects}}
-        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-          <div class="card">
-            <div class="card-header bg-white">
-                <span class = "pull-left">
-                    <h3>
-                      {{dataValues.projectTitle}}
-                    </h3>
-                    <p>
-                        <i class="fa fa-calendar-o"></i>
-                        {{dateFormat dataValues.startDate "LL" utc}}
-                    </p>
-                </span>
-            </div>
-            <div class="card-body" style="border-color:#A37CF0; border:2px solid;">
-                <form id="project-user-issue-form" action="/projects/{{dataValues.id}}" method="get">
-                        <input class="btn btn-light pull-right" type="submit" value="View">
-                </form>
-           </div>
+<h1 class="text-white">My Projects</h1>
+<a href="/projects/new" class="btn btn-outline-light mb-3">Add Project
+  <i class="fa fa-plus"></i>
+</a>
+<div class="row row-cols-auto g-3">
+  {{#each projects}}
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+      <div class="card p-card">
+        <div class="card-header bg-white">
+          <span class = "pull-left">
+              <h3>
+                {{dataValues.projectTitle}}
+              </h3>
+              <p>
+                  <i class="fa fa-calendar-o"></i>
+                  {{dateFormat dataValues.startDate "LL" utc}}
+              </p>
+          </span>
         </div>
+        <div class="card-body">
+            <form id="project-user-issue-form" action="/projects/{{dataValues.id}}" method="get">
+                    <input class="btn btn-light pull-right" type="submit" value="View">
+            </form>
+        </div>
+      </div>
     </div>
-    {{else}}
-        <p style="color: white;">No Issues to be displayed!</p>
-    {{/each}}
-    </div>
+  {{else}}
+    <p style="color: white;">No Issues to be displayed!</p>
+  {{/each}}
+  </div>
 
