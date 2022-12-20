@@ -1,8 +1,115 @@
-<div>
-    <h1 class="text-white">Welcome to the dashboard, {{name}} </h1>
-    <p class="text-white"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus. Ipsum dolor sit amet consectetur adipiscing elit ut aliquam. Facilisi nullam vehicula ipsum a. Quis hendrerit dolor magna eget est lorem ipsum. At ultrices mi tempus imperdiet nulla malesuada. Sed velit dignissim sodales ut eu sem integer. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. Pellentesque habitant morbi tristique senectus et netus. Cursus vitae congue mauris rhoncus aenean vel elit scelerisque. Vulputate mi sit amet mauris. Diam phasellus vestibulum lorem sed. Quis blandit turpis cursus in. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin libero. Velit egestas dui id ornare arcu odio ut. Gravida rutrum quisque non tellus orci ac auctor augue mauris.
-
-Id velit ut tortor pretium. Lectus proin nibh nisl condimentum id venenatis a condimentum vitae. Congue quisque egestas diam in. Dictum fusce ut placerat orci. Arcu felis bibendum ut tristique et egestas. Eget duis at tellus at urna condimentum mattis. Et egestas quis ipsum suspendisse ultrices. Vel quam elementum pulvinar etiam non quam lacus suspendisse. Sed vulputate odio ut enim blandit volutpat. In pellentesque massa placerat duis ultricies lacus sed.</p>
-
-
+<h1 class="text-white">Welcome to the dashboard, {{name}} </h1>
+<div class="row">
+	<div style="width:36em">
+		<canvas class="bg-white"id="firstChart"></canvas>
+	</div>
 </div>
+<div class="row mt-3">
+		<div style="width:36em">
+				<canvas class="bg-white"id="secondChart"></canvas>
+		</div>
+</div>
+  
+<script>
+    var barColors =   [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+    ]
+    var borders =  [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+    ]
+
+    var ctx = document.getElementById("firstChart").getContext("2d");
+    var secondChart = document.getElementById("secondChart").getContext("2d");
+    var myChart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: [
+          "Low",
+          "Moderate",
+          "Alarming",
+          "Critical",
+          "Highest",
+        ],
+        datasets: [
+          {
+            data: [2, 9, 3, 17, 6],
+            backgroundColor: barColors,
+						borderColor: borders, 
+						borderWidth: 1
+          },
+        ],
+      },
+      options: { 
+            title: { 
+                display: true, 
+                text: "Number of Tickets by Urgency"
+            }, 
+            scales: { 
+                yAxes: [{ 
+                    ticks: { 
+                        beginAtZero: true
+                    }
+                }]
+            },
+						legend: { 
+							display: false
+						}
+      }
+    });
+    var secondChart = new Chart(secondChart, { 
+        type: "bar", 
+        data: { 
+            labels: [ 
+            "To Do", 
+            "In Progress", 
+            "Done", 
+            ], 
+            datasets: [ 
+                { 
+                    data:[3, 6, 9], 
+                    backgroundColor: barColors, 
+                    borderColor: borders, 
+                    borderWidth: 1
+                },
+            ],
+        }, 
+        options: { 
+            title: { 
+                display: true, 
+                text: "Number of Tickets by Status"
+            }, 
+            scales: { 
+                yAxes: [{ 
+                    ticks: { 
+                        beginAtZero: true
+                    }
+                }]
+            }, 
+						legend: { 
+							display: false
+						}
+        }
+    });
+</script>
