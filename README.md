@@ -1,7 +1,7 @@
 # Issue Tracker 
 IssueTracker is an intuitive and user-friendly issue (aka tickets, bugs, etc...) management tool for collaborators who are working in overlapping projects including software developers and students. 
 
-## what kind of problem does ‘Issue Tracker’ solve 
+## What can Issue Tracker do?
 The IssueTracker allows users to create projects and add other users to the project. Within each project, users can create and assign issues to other members of the project. Each user can easily access and manage their issues. They will also have a comprehensive overview of their on-going projects and status of the issues within each of their projects. 
 
 ## Motivation 
