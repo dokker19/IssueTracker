@@ -9,7 +9,7 @@
     ·
     <a href="mailto:dyang40@jh.edu?subject=Mail from Our Site">Request Feature</a>
   </p>
-      <h3 align="center">  IssueTracker is an intuitive and user-friendly issue (aka tickets, bugs, etc...) management tool for collaborators who are working in overlapping projects including software developers and students. </h3>
+      <p align="center">  IssueTracker is an intuitive and user-friendly issue (aka tickets, bugs, etc...) management tool for collaborators who are working in overlapping projects including software developers and students. </p>
 </p>
 
 ## What can Issue Tracker do?
