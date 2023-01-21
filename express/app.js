@@ -121,6 +121,7 @@ class App {
     }
 
     getRouting(){
+
         function checkAuthenticated(req, res, next){
             if (req.isAuthenticated()){ 
                 return next()
@@ -145,20 +146,12 @@ class App {
             failureRedirect:  './login',
             failureFlash: true,
         }))
-        this.app.get('/dashboard',checkAuthenticated, (req, res) =>{
-            res.render('dashboard', { 
-                name: req.user.username,
-                style: './custom.css',
-            })
-        })
         this.app.delete('/logout', (req, res) => {
             req.logout((err) => {
                 if (err) console.log(err)
             })
             res.redirect('/login')
         })
-
-
         this.app.use(require('../controllers'))
         console.log('Routing setup successful!')
     }

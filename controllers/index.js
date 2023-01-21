@@ -7,6 +7,8 @@ router.get('/', (req, res) => {
     res.send('Welcome to the Issue Tracker')
 })
 
+router.use('/dashboard', require('./dashboard'))
+
 router.use('/users', require('./user'))
 
 router.use('/issues', require('./issue'))

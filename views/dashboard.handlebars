@@ -11,6 +11,13 @@
 </div>
   
 <script>
+    {{urgencyArray}}.forEach((u) => {
+        console.log(u)
+    })
+
+    console.log({{urgencyArray}})
+    console.log(typeof {{urgencyArray.values}})
+    console.log('hi\n\n\nhi')
     var barColors =   [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -54,7 +61,8 @@
         ],
         datasets: [
           {
-            data: [2, 9, 3, 17, 6],
+            //data: {{urgencyArray.values}},
+            //data: [2, 9, 3, 17, 6],
             backgroundColor: barColors,
 						borderColor: borders, 
 						borderWidth: 1
@@ -88,7 +96,8 @@
             ], 
             datasets: [ 
                 { 
-                    data:[3, 6, 9], 
+                    //data: {{statusArray}},
+                    //data:[3, 6, 9], 
                     backgroundColor: barColors, 
                     borderColor: borders, 
                     borderWidth: 1
