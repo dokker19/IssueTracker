@@ -64,17 +64,23 @@ router.get('/', (req, res) => {
         console.log(issueUrgencyCount)
         console.log('logging issueProgressCOunt...\n\n')
         console.log(issueProgressCount)
+
         res.render('dashboard', {
         name: req.user.username,
         style: './custom.css',
 
-        urgencyArray: {
-            dataValues: {
-                array: issueUrgencyCount
+        // urgencyArray: issueUrgencyCount
+
+        urgencyArray: [
+            {
+                dataValues: {
+                    array: issueUrgencyCount
+                },
             },
-        }
+        ],
     })
-    }).catch(err => console.log(err))
+    })
+    .catch(err => console.log(err))
     
 })
 

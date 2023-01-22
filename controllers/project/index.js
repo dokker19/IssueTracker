@@ -62,6 +62,8 @@ router.get('/', (req, res, next) => {
         }})
     }).then((data) => {
         projects = data
+        console.log('logging projects type..\n\n')
+        console.log(projects)
         res.render('showProjects', {
             projects,
             style : './custom.css',

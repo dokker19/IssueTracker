@@ -9,15 +9,12 @@
 				<canvas class="bg-white"id="secondChart"></canvas>
 		</div>
 </div>
-  
-<script>
-    {{urgencyArray}}.forEach((u) => {
-        console.log(u)
-    })
 
-    console.log({{urgencyArray}})
-    console.log(typeof {{urgencyArray.values}})
-    console.log('hi\n\n\nhi')
+<script>
+    console.log('hi')
+    var array =  [ {{#each urgencyArray}} {{dataValues.array}} {{else}} {{/each}}];
+    console.log(array)
+
     var barColors =   [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -62,7 +59,7 @@
         datasets: [
           {
             //data: {{urgencyArray.values}},
-            //data: [2, 9, 3, 17, 6],
+            data: array,
             backgroundColor: barColors,
 						borderColor: borders, 
 						borderWidth: 1
