@@ -9,22 +9,22 @@ const { applyExtraSetup } = require('./extra-setup');
 
 const fs = require('fs')
 
-// const sequelize = new Sequelize('issuetrack', 'postgres', 'qwer1023', {
-//     host: 'localhost',
-//     dialect: 'postgres',
-// 	timezone: "+00:00",
-// })
-const sequelize = new Sequelize('df9j615lkn0oqc', 'cjsrxlmiusjgel', '852a9833cda4f519c352a61f547410d1b8982da7f43bdd1acb5c7874733196c2', {
-    host: 'ec2-52-54-212-232.compute-1.amazonaws.com',
+const sequelize = new Sequelize('issuetrack', 'postgres', 'qwer1023', {
+    host: 'localhost',
     dialect: 'postgres',
 	timezone: "+00:00",
-	dialectOptions:{
-		ssl:{
-			require:true,
-			rejectUnauthorized:false
-		}
-	}
 })
+// const sequelize = new Sequelize('df9j615lkn0oqc', 'cjsrxlmiusjgel', '852a9833cda4f519c352a61f547410d1b8982da7f43bdd1acb5c7874733196c2', {
+//     host: 'ec2-52-54-212-232.compute-1.amazonaws.com',
+//     dialect: 'postgres',
+// 	timezone: "+00:00",
+// 	dialectOptions:{
+// 		ssl:{
+// 			require:true,
+// 			rejectUnauthorized:false
+// 		}
+// 	}
+// })
 
 const modelDefiners = [
 	require('./models/Users'),
