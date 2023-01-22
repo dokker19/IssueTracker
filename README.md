@@ -8,6 +8,8 @@
     <a href="mailto:klim30@jh.edu?subject=Mail from Our Site">Report Bug</a>
     ·
     <a href="mailto:dyang40@jh.edu?subject=Mail from Our Site">Request Feature</a>
+    ·
+    <a href="https://issue-track3r.herokuapp.com">Heroku Demo 🚀</a>
   </p>
       <p align="center">  IssueTracker is an intuitive and user-friendly issue (aka tickets, bugs, etc...) management tool for collaborators who are working in overlapping projects including software developers and students. </p>
 </p>
