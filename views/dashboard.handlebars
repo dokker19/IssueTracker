@@ -12,8 +12,10 @@
 
 <script>
     console.log('hi')
-    var array =  [ {{#each urgencyArray}} {{dataValues.array}} {{else}} {{/each}}];
-    console.log(array)
+    var array1 =  [ {{#each urgencyArray}} {{dataValues.array}} {{else}} {{/each}}];
+    var array2 =  [ {{#each progressArray}} {{dataValues.array}} {{else}} {{/each}}];
+    console.log(array1)
+    console.log(array2)
 
     var barColors =   [
         'rgba(255, 99, 132, 0.2)',
@@ -59,7 +61,7 @@
         datasets: [
           {
             //data: {{urgencyArray.values}},
-            data: array,
+            data: array1,
             backgroundColor: barColors,
 						borderColor: borders, 
 						borderWidth: 1
@@ -73,10 +75,10 @@
             }, 
             scales: { 
                 yAxes: [{ 
-                    ticks: { 
-                        beginAtZero: true
-                    }
-                }]
+                        ticks: { 
+                            stepSize: 1,
+                        }
+                    }]
             },
 						legend: { 
 							display: false
@@ -93,8 +95,7 @@
             ], 
             datasets: [ 
                 { 
-                    //data: {{statusArray}},
-                    //data:[3, 6, 9], 
+                    data: array2,
                     backgroundColor: barColors, 
                     borderColor: borders, 
                     borderWidth: 1
@@ -109,7 +110,7 @@
             scales: { 
                 yAxes: [{ 
                     ticks: { 
-                        beginAtZero: true
+                        stepSize: 1,
                     }
                 }]
             }, 

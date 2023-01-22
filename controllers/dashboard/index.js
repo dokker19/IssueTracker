@@ -78,6 +78,14 @@ router.get('/', (req, res) => {
                 },
             },
         ],
+
+        progressArray: [
+            {
+                dataValues: {
+                    array: issueProgressCount
+                },
+            },
+        ],
     })
     })
     .catch(err => console.log(err))
